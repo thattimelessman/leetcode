@@ -1,5 +1,6 @@
 char*normalizeEmail(const char*email){
-    char*result=(char*)malloc(105*sizeof(char));
+    int n = strlen(email);
+    char* result = (char*)malloc((n + 5) * sizeof(char));
     int i=0,j=0;
 
     while(email[i] !='@'){
@@ -10,10 +11,7 @@ char*normalizeEmail(const char*email){
         if(email[i] !='.'){
             result[j++]=email[i];
         }
-        if(email[i]!='.'){
-            result[j++]=email[i];
-
-        } i++;
+        i++;
     }
     while(email[i]!='\0'){
         result[j++]=email[i++];
