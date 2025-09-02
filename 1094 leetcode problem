@@ -1,23 +1,23 @@
-bool carPooling(int** trips, int tripsSize, int* tripsColSize, int capacity) {
-    int diff[1002] = {0}; 
-    
-    
-    for (int i = 0; i < tripsSize; i++) {
-        int numPassengers = trips[i][0];
-        int from = trips[i][1];
-        int to = trips[i][2];
-        diff[from] += numPassengers;   
-        diff[to + 1] -= numPassengers; 
+class Solution {
+ public:
+  bool carPooling(vector<vector<int>>& trips, int capacity) {
+    int currentPassengers = 0;
+    map<int, int> line;
+
+    for (const vector<int>& trip : trips) {
+      const int nPassengers = trip[0];
+      const int start = trip[1];
+      const int end = trip[2];
+      line[start] += nPassengers;
+      line[end] -= nPassengers;
     }
-    
-    
-    int count = 0;
-    for (int x = 0; x <= 1000; x++) {
-        count += diff[x];
-        if (count > capacity) {
-            return false; 
-        }
+
+    for (const auto [_, passengerChange] : line) {
+      currentPassengers += passengerChange;
+      if (currentPassengers > capacity)
+        return false;
     }
-    
-    return true; 
-}
+
+    return true;
+  }
+};
