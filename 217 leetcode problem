@@ -1,3 +1,5 @@
+C++ Code
+
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
@@ -12,3 +14,17 @@ unordered_set <int> seen;
     return false;
 }
 };
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Python Code
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        s=set()
+        for x in nums:
+            if x in s:
+                return True
+            s.add(x)
+        return False
+
